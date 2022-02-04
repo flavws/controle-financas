@@ -38,4 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin();
                 //and - mais configurações / formLogin - o spring gera um formulario de autenticação
     }
+
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+    }
 }
