@@ -1,6 +1,7 @@
 package br.com.challenge.controlefinanceiro.config.security;
 
 import br.com.challenge.controlefinanceiro.model.Usuario;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,5 +37,20 @@ public class TokenService {
                 .setExpiration(dateExpiration)  //data de expiração do token
                 .signWith(SignatureAlgorithm.HS256, secret) //criptografa o token
                 .compact(); //compacta e transforma em string
+    }
+
+    public boolean isTokenValid(String token) {
+        try {
+            Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+
+    }
+
+    public Long getIdUsuario(String token) {
+        Claims body = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
+        return Long.parseLong(body.getSubject());
     }
 }
