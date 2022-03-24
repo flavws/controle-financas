@@ -6,13 +6,17 @@ import java.time.LocalDate;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
+@ToString
 public class Despesa {
 
 	@Id
@@ -28,5 +32,7 @@ public class Despesa {
 
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
+
+
 	
 }
