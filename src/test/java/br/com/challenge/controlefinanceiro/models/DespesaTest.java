@@ -32,14 +32,14 @@ public class DespesaTest {
     @Test
     public void deveTestarOConstrutorDespesas(){
 
-        var esperado = ItemDespesa.builder().id(1L).descricao("Mercado").valor(new BigDecimal("150.00")).data(LocalDate.of(2022, 02, 15)).categoria(Categoria.valueOf("ALIMENTACAO")).build();
+        var construtorTeste = ItemDespesa.builder().id(1L).descricao("Mercado").valor(new BigDecimal("150.00")).data(LocalDate.of(2022, 02, 15)).categoria(Categoria.valueOf("ALIMENTACAO")).build();
 
-        Despesa atual = new Despesa(esperado.getId(), esperado.getDescricao(), esperado.getValor(), esperado.getData(), esperado.getCategoria());
+        Despesa construtorDespesa = new Despesa(construtorTeste.getId(), construtorTeste.getDescricao(), construtorTeste.getValor(), construtorTeste.getData(), construtorTeste.getCategoria());
 
-        assertEquals(atual.getId(), esperado.getId());
-        assertEquals(atual.getDescricao(), esperado.getDescricao());
-        assertEquals(atual.getValor(), esperado.getValor());
-        assertEquals(atual.getData(), esperado.getData());
-        assertEquals(atual.getCategoria(), esperado.getCategoria());
+        assertEquals(construtorDespesa.getId(), construtorTeste.getId());
+        assertEquals(construtorDespesa.getDescricao(), construtorTeste.getDescricao());
+        assertEquals(construtorDespesa.getValor(), construtorTeste.getValor());
+        assertEquals(construtorDespesa.getData(), construtorTeste.getData());
+        assertEquals(construtorDespesa.getCategoria(), construtorTeste.getCategoria());
     }
 }
