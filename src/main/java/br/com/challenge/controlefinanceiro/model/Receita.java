@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @NoArgsConstructor
@@ -22,10 +23,13 @@ public class Receita {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Schema(name = "Descrição", example = "Atacadão")
 	private String descricao;
 
+	@Schema(name = "Valor", example = "500")
 	private BigDecimal valor;
 
+	@Schema(name = "Data da receita", example = "15/01/2022")
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
 	private LocalDate data;
 	

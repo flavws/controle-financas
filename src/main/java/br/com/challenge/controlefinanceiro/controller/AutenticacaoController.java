@@ -3,8 +3,7 @@ package br.com.challenge.controlefinanceiro.controller;
 import br.com.challenge.controlefinanceiro.config.security.TokenService;
 import br.com.challenge.controlefinanceiro.dto.LoginDTO;
 import br.com.challenge.controlefinanceiro.dto.TokenDTO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,8 +16,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-@Api(value = "API REST Autenticação")
-@CrossOrigin(origins = "*")
+@Tag(name = "Autenticação do Token")
 public class AutenticacaoController {
 
     @Autowired
@@ -28,7 +26,6 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    @ApiOperation(value = "Autentica token")
     public ResponseEntity<TokenDTO> autenticar(@RequestBody @Valid LoginDTO loginDTO){
         UsernamePasswordAuthenticationToken dadosLogin = loginDTO.converter();
         try {

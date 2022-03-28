@@ -4,8 +4,7 @@ import br.com.challenge.controlefinanceiro.dto.DespesaDTO;
 import br.com.challenge.controlefinanceiro.model.Despesa;
 import br.com.challenge.controlefinanceiro.repository.DespesaRepository;
 import br.com.challenge.controlefinanceiro.service.DespesaService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,12 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/despesa")
-@Api(value = "API REST Despesas")
-@CrossOrigin(origins = "*")
+@Tag(name = "Controle das despesas")
 public class DespesaController {
 
     @Autowired
@@ -32,13 +29,11 @@ public class DespesaController {
     DespesaRepository despesaRepository;
 
     @PostMapping
-    @ApiOperation(value = "Cria uma despesa")
     public Despesa salvar(@RequestBody @Valid Despesa despesa) {
         return despesaService.save(despesa);
     }
 
     @GetMapping
-    @ApiOperation(value = "Lista todas as despesas")
     public List<DespesaDTO> findAll(){
         return despesaService.findAll();
     }
@@ -52,7 +47,6 @@ public class DespesaController {
     }
 
     @GetMapping(value = "/{id}")
-    @ApiOperation(value = "Lista despesa por ID")
     public List<DespesaDTO> buscarId(@PathVariable("id") Long id){
 
         if(id == null) {
@@ -62,22 +56,18 @@ public class DespesaController {
     }
 
     @GetMapping(value = "/descricao/{descricao}")
-    @ApiOperation(value = "Lista despesa por descrição")
     public List<DespesaDTO> buscarDescricao(@PathVariable("descricao") String descricao){
 
         return despesaService.findDescricao(descricao);
     }
 
     @PutMapping("/{id}")
-    @ApiOperation(value = "Atualiza despesa")
-// @Transactional commit
     public ResponseEntity<DespesaDTO> update(@PathVariable Long id, @RequestBody @Valid DespesaDTO despesaDTO){
         Optional<Despesa> despesa = despesaDTO.atualizar(id, despesaRepository);
         return ResponseEntity.ok(new DespesaDTO(despesa.get()));
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Deleta despesa")
     public ResponseEntity<?> delete(@PathVariable Long id){
         despesaRepository.deleteById(id);
         return ResponseEntity.ok().build();

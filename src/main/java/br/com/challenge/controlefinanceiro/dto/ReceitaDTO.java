@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
 import br.com.challenge.controlefinanceiro.model.Receita;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,12 +28,15 @@ public class ReceitaDTO {
 	@NotNull
 	private Long id;
 
+	@Schema(name = "Descrição da receita", example = "Mercado")
 	@NotBlank
 	private String descricao;
 
+	@Schema(name = "Valor da receita", example = "145.00")
 	@NotNull
 	private BigDecimal valor;
 
+	@Schema(name = "Data da receita", example = "15/02/2022")
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
 	private LocalDate data;
 
@@ -43,10 +47,6 @@ public class ReceitaDTO {
 		this.id = receita.getId();
 	}
 
-	public static List<ReceitaDTO> cList(List<Receita> receita){
-		return receita.stream().map(ReceitaDTO::new).collect(Collectors.toList());
-	}
-
 	public Receita converter(Receita receita) {
 		receita.setDescricao(descricao);
 		receita.setValor(valor);
@@ -55,11 +55,6 @@ public class ReceitaDTO {
 		return receita;
 	}
 
-	public Receita cReceita() {
-		Receita receita = new Receita();
-
-		return converter(receita);
-	}
 
 	public Optional<Receita> atualizar(Long id, ReceitaRepository receitaRepository) {
 

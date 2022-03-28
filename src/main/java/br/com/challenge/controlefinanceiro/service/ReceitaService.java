@@ -17,7 +17,7 @@ public class ReceitaService {
     @Autowired
     private ReceitaRepository receitaRepository;
 
-    public List<ReceitaDTO> findAll(ReceitaDTO receitaDTO){
+    public List<ReceitaDTO> findAll(){
         return receitaRepository.findAll().stream().map(ReceitaDTO::new).collect(Collectors.toList());
     }
 
@@ -32,5 +32,11 @@ public class ReceitaService {
         receita = receitaRepository.save(receita);
 
         return receita;
+    }
+
+    public List<ReceitaDTO> findId(Long id){
+        Optional<Receita> receita = receitaRepository.findById(id);
+        List<ReceitaDTO> dto = receita.stream().map(ReceitaDTO::new).collect(Collectors.toList());
+        return dto;
     }
 }

@@ -13,6 +13,7 @@ import br.com.challenge.controlefinanceiro.model.Categoria;
 import br.com.challenge.controlefinanceiro.model.Despesa;
 import br.com.challenge.controlefinanceiro.repository.DespesaRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,16 +28,19 @@ public class DespesaDTO {
 
 	private Long id;
 
+	@Schema(name = "Descrição", example = "Remédios", required = false)
 	@NotBlank
 	private String descricao;
 
+	@Schema(name = "Valor gasto", example = "200.00")
 	@NotNull
 	private BigDecimal valor;
 
+	@Schema(name = "Data da despesa", example = "22/02/2022")
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
 	private LocalDate data;
 
-	// @NotBlank
+	@Schema(name = "Categoria da despesa", example = "SAUDE")
 	private Categoria categoria;
 
 	public DespesaDTO (Despesa despesa){
