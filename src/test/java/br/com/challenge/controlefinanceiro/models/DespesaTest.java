@@ -1,11 +1,15 @@
 package br.com.challenge.controlefinanceiro.models;
 
-import br.com.challenge.controlefinanceiro.config.DespesaTemplate;
+import br.com.challenge.controlefinanceiro.model.Categoria;
 import br.com.challenge.controlefinanceiro.model.Despesa;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import org.junit.Before;
 import org.junit.Test;
+import template.ItemDespesa;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -19,20 +23,16 @@ public class DespesaTest {
 
     @Test
     public void deveVerificarSeDespesaEstaNula(){
-        Despesa despesa = Fixture.from(Despesa.class).gimme("valid");
+        var desp = ItemDespesa.builder().id(1L).descricao("Mercado").valor(new BigDecimal("150.00")).data(LocalDate.of(2022, 02, 15)).categoria(Categoria.valueOf("ALIMENTACAO")).build();
 
-        assertNotNull(despesa);
-        assertNotNull(despesa.getId());
-        assertNotNull(despesa.getDescricao());
-        assertNotNull(despesa.getValor());
-        assertNotNull(despesa.getData());
-        assertNotNull(despesa.getCategoria());
+        assertNotNull(desp);
+
     }
 
     @Test
     public void deveTestarOConstrutorDespesas(){
 
-        Despesa esperado = Fixture.from(Despesa.class).gimme("valid");
+        var esperado = ItemDespesa.builder().id(1L).descricao("Mercado").valor(new BigDecimal("150.00")).data(LocalDate.of(2022, 02, 15)).categoria(Categoria.valueOf("ALIMENTACAO")).build();
 
         Despesa atual = new Despesa(esperado.getId(), esperado.getDescricao(), esperado.getValor(), esperado.getData(), esperado.getCategoria());
 

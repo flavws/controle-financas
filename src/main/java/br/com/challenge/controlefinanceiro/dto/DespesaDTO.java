@@ -14,12 +14,10 @@ import br.com.challenge.controlefinanceiro.model.Despesa;
 import br.com.challenge.controlefinanceiro.repository.DespesaRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.domain.Page;
 
+@Builder(toBuilder = true)
 @Getter
 @Setter
 @AllArgsConstructor

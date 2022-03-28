@@ -8,6 +8,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
