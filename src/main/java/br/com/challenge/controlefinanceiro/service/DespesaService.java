@@ -8,16 +8,26 @@ import br.com.challenge.controlefinanceiro.exception.DespesaException;
 import br.com.challenge.controlefinanceiro.model.Categoria;
 import br.com.challenge.controlefinanceiro.model.Despesa;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.challenge.controlefinanceiro.dto.DespesaDTO;
 import br.com.challenge.controlefinanceiro.repository.DespesaRepository;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.validation.Valid;
 
 @Service
 public class DespesaService {
 
-	@Autowired
+
 	private DespesaRepository despesaRepository;
+
+	@Autowired
+	public DespesaService(DespesaRepository despesaRepository){
+		this.despesaRepository = despesaRepository;
+	}
 
 	public List<DespesaDTO> findAll(){
 		return despesaRepository.findAll().stream().map(DespesaDTO::new).collect(Collectors.toList());
@@ -48,6 +58,14 @@ public class DespesaService {
 		return despesaRepository.findByDescricao(descricao).stream().map(DespesaDTO::new).collect(Collectors.toList());
 	}
 
+	public ResponseEntity<?> delete(Long id){
+		despesaRepository.deleteById(id);
+		return ResponseEntity.ok().build();
+	}
 
+	public ResponseEntity<DespesaDTO> update(Long id, DespesaDTO despesaDTO){
+		Optional<Despesa> despesa = despesaDTO.atualizar(id, despesaRepository);
+		return ResponseEntity.ok(new DespesaDTO(despesa.get()));
+	}
 
 }

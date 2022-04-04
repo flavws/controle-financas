@@ -45,13 +45,12 @@ public class ReceitaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ReceitaDTO> update(@PathVariable Long id, @RequestBody @Valid ReceitaDTO receitaDTO){
-        Optional<Receita> receita = receitaDTO.atualizar(id, receitaRepository);
-        return ResponseEntity.ok(new ReceitaDTO(receita.get()));
+        return receitaService.update(id, receitaDTO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        receitaRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+
+        return receitaService.delete(id);
     }
 }

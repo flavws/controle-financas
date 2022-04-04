@@ -22,8 +22,5 @@ public interface ReceitaRepository extends JpaRepository<Receita, Long> {
     @Query("select sum(r.valor) from Receita r where year(r.data) = :ano and month(r.data) = :mes")
     Optional<BigDecimal> valorMes(Integer ano, Integer mes);
 
-    @Query(value = "SELECT * FROM Despesa WHERE descricao= :descricao", nativeQuery = true)
-    Page<Receita> findByDescricaoDespesas(@Param("descricao") String descricao, Pageable paginacao);
-
     List<Receita> findByDescricao(String descricao);
 }

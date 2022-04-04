@@ -63,13 +63,11 @@ public class DespesaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<DespesaDTO> update(@PathVariable Long id, @RequestBody @Valid DespesaDTO despesaDTO){
-        Optional<Despesa> despesa = despesaDTO.atualizar(id, despesaRepository);
-        return ResponseEntity.ok(new DespesaDTO(despesa.get()));
+        return despesaService.update(id, despesaDTO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        despesaRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        return despesaService.delete(id);
     }
 }

@@ -8,15 +8,12 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@ToString
 public class Despesa {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
