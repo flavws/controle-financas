@@ -1,6 +1,5 @@
-package br.com.challenge.controlefinanceiro.models;
+package br.com.challenge.controlefinanceiro.model;
 
-import br.com.challenge.controlefinanceiro.model.Perfil;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import org.junit.Assert;

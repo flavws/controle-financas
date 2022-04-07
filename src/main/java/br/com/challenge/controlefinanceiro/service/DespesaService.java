@@ -63,9 +63,9 @@ public class DespesaService {
 		return ResponseEntity.ok().build();
 	}
 
-	public ResponseEntity<DespesaDTO> update(Long id, DespesaDTO despesaDTO){
+	public DespesaDTO update(Long id, DespesaDTO despesaDTO){
 		Optional<Despesa> despesa = despesaDTO.atualizar(id, despesaRepository);
-		return ResponseEntity.ok(new DespesaDTO(despesa.get()));
+		return new DespesaDTO(despesa.get());
 	}
 
 }

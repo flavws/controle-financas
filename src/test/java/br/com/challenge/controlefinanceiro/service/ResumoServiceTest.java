@@ -52,8 +52,10 @@ public class ResumoServiceTest {
 
         ResumoMensalDTO resumoMensalDTO = new ResumoMensalDTO(valorTotalR, valorTotalD, saldoFinal, gastosCategoria);
 
+
         Assert.assertEquals(saldoFinal, valorTotalD.subtract(valorTotalD));
         Assert.assertEquals(gastosCategoria, despesaRepository.valorAgrupado(despesa.getData().getYear(), despesa.getData().getMonthValue()));
         Assert.assertNotNull(resumoMensalDTO);
+        Assert.assertNotNull(resumoService.resumoMes(despesa.getData().getYear(), despesa.getData().getMonthValue()));
     }
 }

@@ -48,8 +48,8 @@ public class ReceitaService {
         return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity<ReceitaDTO> update(Long id, ReceitaDTO receitaDTO){
+    public ReceitaDTO update(Long id, ReceitaDTO receitaDTO){
         Optional<Receita> receita = receitaDTO.atualizar(id, receitaRepository);
-        return ResponseEntity.ok(new ReceitaDTO(receita.get()));
+        return new ReceitaDTO(receita.get());
     }
 }

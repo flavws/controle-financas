@@ -1,16 +1,10 @@
-package br.com.challenge.controlefinanceiro.models;
+package br.com.challenge.controlefinanceiro.model;
 
-import br.com.challenge.controlefinanceiro.model.Categoria;
-import br.com.challenge.controlefinanceiro.model.Despesa;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +33,7 @@ public class DespesaTest {
 
         Despesa construtorDespesa = new Despesa();
 
-        assertNull(construtorDespesa);
+        assertNotNull(construtorDespesa);
     }
 
     @Test

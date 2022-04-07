@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/despesa")
@@ -63,11 +62,11 @@ public class DespesaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<DespesaDTO> update(@PathVariable Long id, @RequestBody @Valid DespesaDTO despesaDTO){
-        return despesaService.update(id, despesaDTO);
+        return  ResponseEntity.ok(despesaService.update(id, despesaDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        return despesaService.delete(id);
+    public ResponseEntity delete(@PathVariable Long id){
+        return ResponseEntity.ok(despesaService.delete(id));
     }
 }

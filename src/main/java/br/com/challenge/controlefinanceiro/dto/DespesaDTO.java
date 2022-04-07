@@ -13,6 +13,8 @@ import br.com.challenge.controlefinanceiro.model.Categoria;
 import br.com.challenge.controlefinanceiro.model.Despesa;
 import br.com.challenge.controlefinanceiro.repository.DespesaRepository;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.data.domain.Page;
@@ -35,6 +37,7 @@ public class DespesaDTO {
 	private BigDecimal valor;
 
 	@Schema(name = "Data da despesa", example = "22/02/2022")
+	@JsonSerialize(using = LocalDateSerializer.class)
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
 	private LocalDate data;
 
