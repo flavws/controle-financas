@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -30,6 +32,7 @@ public class Receita {
 	private BigDecimal valor;
 
 	@Schema(name = "Data da receita", example = "15/01/2022")
+	@JsonSerialize(using = LocalDateSerializer.class)
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
 	private LocalDate data;
 	

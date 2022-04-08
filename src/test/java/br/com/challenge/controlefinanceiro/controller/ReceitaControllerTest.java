@@ -62,7 +62,7 @@ public class ReceitaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/receita")
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -78,7 +78,7 @@ public class ReceitaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/receita")
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -87,16 +87,16 @@ public class ReceitaControllerTest {
     @Test
     public void deveTestarRequisicaoGetIdDaReceita() throws Exception{
         Receita entrada = Fixture.from(Receita.class).gimme("model");
-        Receita saida = Fixture.from(Receita.class).gimme("model");
+        List<ReceitaDTO> saida = Fixture.from(ReceitaDTO.class).gimme(3,"dto");
 
         String idRequest = entrada.getId().toString();
 
-        Mockito.when(this.receitaService.findId(any())).thenReturn((List<ReceitaDTO>) saida);
+        Mockito.when(this.receitaService.findId(any())).thenReturn(saida);
 
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/receita/{id}", idRequest)
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -115,7 +115,7 @@ public class ReceitaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .put("/receita/{id}", idRequest)
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -133,7 +133,7 @@ public class ReceitaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .delete("/receita/{id}", idRequest)
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();

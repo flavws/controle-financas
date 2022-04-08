@@ -70,7 +70,7 @@ public class DespesaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/despesa")
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -86,7 +86,7 @@ public class DespesaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/despesa")
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -104,7 +104,7 @@ public class DespesaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/despesa/{id}", idRequest)
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -122,7 +122,7 @@ public class DespesaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/despesa//descricao/{descricao}", descRequest)
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -140,7 +140,7 @@ public class DespesaControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .put("/despesa/{id}", idRequest)
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -157,8 +157,8 @@ public class DespesaControllerTest {
 
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .put("/despesa/{id}", idRequest)
-                        .contentType(asJsonString(entrada))
+                        .delete("/despesa/{id}", idRequest)
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();

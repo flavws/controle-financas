@@ -60,7 +60,7 @@ public class ResumoControllerTest {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .get("/resumo/{ano}/{mes}", ano, mes)
-                        .contentType(asJsonString(entrada))
+                        .content(asJsonString(entrada))
                         .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
